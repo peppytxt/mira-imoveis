@@ -4,6 +4,9 @@ import CardImovel from "./components/CardImovel";
 
 function App() {
   
+  const [tipoBusca,setTipoBusca] = useState('Todos');
+  const  [cidadeBusca, setCidadeBusca] = useState('Todas')
+  
   const [viewMode, setViewMode] = useState('split');
 
   // SIMULAÇÃO de lista de imóveis
@@ -65,6 +68,13 @@ function App() {
     
   ];
 
+  const imoveisFiltrados = imoveis.filter(imovel => {
+    const filtroTipo = tipoBusca === 'Todos' || imovel.status === tipoBusca;
+    const filtroCidade = cidadeBusca === 'Todos' || imovel.cidade === cidadeBusca;
+
+    return filtroTipo && filtroCidade;
+  })
+
   return (
     <div className="flex flex-col h-screen bg-gray-100">
       {/* Header (Topo) */}
@@ -95,11 +105,12 @@ function App() {
       </div>
 
       <main className="flex flex-1 overflow-hidden">
-        <section className={`${viewMode === 'grid' ? 'w-full px-20' : 'w-1/2'} overflow-y-auto p-6 transition-all duration-300`}>
-          <div className="flex gap-4 py-3">
-            <select className="bg-white border p-2 rounded-lg flex-1">
-              <option>Alugar</option>
-              <option>Comprar</option>
+        <section className={`${viewMode === 'grid' ? 'w-full px-10' : 'w-1/2'} overflow-y-auto p-6 transition-all duration-300`}>
+          <div className="flex gap-3 py-3 h-20">
+            <select className="bg-white border p-2 rounded-lg flex-1" onChange={(e) => setTipoBusca(e.target.value)}>
+              <option value="Alugar">Alugar</option>
+              <option value="Comprar">Comprar</option>
+              <option value="Todos">Todas</option>
             </select>
             <select className="bg-white border p-2 rounded-lg flex-1">
               <option>Cidade</option>
@@ -110,14 +121,14 @@ function App() {
               <option>Jardim das Flores I</option>
               <option>Jardim das Flores II</option>
             </select>
-            <textarea name="Valor Máximo" id="maxvalue" className="bg-white border p-2 rounded-lg flex-1">Valor Máximo</textarea>
+            <textarea name="Valor Máximo" id="maxvalue" className="bg-white border p-2 rounded-lg flex-1"></textarea>
             <button className="bg-gray-800 text-white p-2 rounded-lg px-4">🔍</button>
           </div>
 
           <div className="grid grid-cols-1 gap-4">
              {/* Componentes de Card :3 */}
              <div className={`grid gap-6 transition-all ${viewMode === 'grid' ? 'grid-cols-4' : 'grid-cols-2'}`}>
-            {imoveis.map((imovel) => (
+            {imoveisFiltrados.map((imovel) => (
               <CardImovel 
                 key={imovel.id}
                 preco={imovel.preco}
@@ -134,7 +145,7 @@ function App() {
 
         {viewMode === 'split' && (
           <section className="w-1/2 bg-gray-200 relative animate-in fade-in slide-in-from-right duration-300">
-            <div className="absolute inset-4 bg-white rounded-3xl shadow-inner flex items-center justify-center">Aqui fica o Mapa</div>
+            <div className="absolute inset-4 bg-white rounded-3xl shadow-inner flex items-center justify-center">Aqui fica o Mapa da Cidade</div>
           </section>
         )}
       </main>
