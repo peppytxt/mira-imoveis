@@ -20,7 +20,7 @@ function CardImovel({ imagem, preco, quartos, banheiros, area, endereco, status 
       <div className="p-5 space-y-2">
         <div className="flex items-center gap-2 text-red-500 font-bold text-xs uppercase">
           <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-          {status || "À Venda"}
+          {status || "Disponível"}
         </div>
 
         <h2 className="text-2xl font-bold text-gray-800">
