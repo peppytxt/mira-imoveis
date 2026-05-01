@@ -72,15 +72,16 @@ function Home({ imoveis }) {
              {/* Componentes de Card :3 */}
              <div className={`grid gap-6 transition-all ${viewMode === 'grid' ? 'grid-cols-4' : 'grid-cols-2'}`}>
               {imoveisFiltrados.length > 0 ? (
-              imoveisFiltrados.map((imovel) => (
-                <CardImovel 
-                  key={imovel.id}
-                  preco={imovel.preco}
-                  quartos={imovel.quartos}
-                  banheiros={imovel.banheiros}
-                  area={imovel.area}
-                  endereco={imovel.endereco}
-                  imagem={imovel.imagem}
+                imoveisFiltrados.map((imovel) => (
+                  <CardImovel 
+                    id={imovel.id}
+                    preco={imovel.preco}
+                    quartos={imovel.quartos}
+                    banheiros={imovel.banheiros}
+                    area={imovel.area}
+                    endereco={imovel.endereco}
+                    imagem={imovel.imagem}
+                    status={imovel.status}
                 />
               ))
             ) : (

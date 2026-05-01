@@ -1,8 +1,10 @@
 import { Bed, Bath, Maximize, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 // Recebemos os dados do imóvel via "props" (desestruturadas aqui)
-function CardImovel({ imagem, preco, quartos, banheiros, area, endereco, status }) {
+function CardImovel({id, imagem, preco, quartos, banheiros, area, endereco, status }) {
   return (
+    <Link to={`/imovel/${id}`} className="block">
     <div className="bg-white rounded-[2rem] shadow-sm overflow-hidden border border-gray-100 group cursor-pointer hover:shadow-md transition-shadow">
       {/* Container da Imagem */}
       <div className="relative h-48 w-full">
@@ -45,6 +47,7 @@ function CardImovel({ imagem, preco, quartos, banheiros, area, endereco, status 
         </p>
       </div>
     </div>
+    </Link>
   );
 }
 
