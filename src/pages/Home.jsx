@@ -1,11 +1,10 @@
 
 import { useState } from "react";
-import { Routes, Route } from '../pages/PaginaDetalhes'
-import 'leaflet/dist/leaflet.css'
+import 'leaflet/dist/leaflet.css';
 import CardImovel from "../components/CardImovel";
 import Mapa from "../components/Mapa";
 
-function App() {
+function Home({ imoveis }) {
   
     const [tipoBusca,setTipoBusca] = useState('Todos');
     const [cidadeBusca, setCidadeBusca] = useState('Todos')
@@ -101,4 +100,4 @@ function App() {
   )
 }
 
-export default App
+export default Home;
