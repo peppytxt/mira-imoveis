@@ -17,7 +17,7 @@ function Mapa ({ imoveis }) {
     const posicaoCentral = [-15.6781, -58.0935]
     
     return (
-        <MapContainer center={posicaoCentral} zoom={14} className="h-full w-full rounded-3xl">
+        <MapContainer center={posicaoCentral} scrollWheelZoom={false} dragging={true} zoom={14} className="h-full w-full rounded-[2.5rem]">
             <TileLayer attribution="&copy; OpenStreetMap contributors" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 
             {imoveis.map(imovel => (

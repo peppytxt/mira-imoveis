@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import Footer from './components/Footer';
 import PaginaDetalhes from './pages/PaginaDetalhes';
 
 function App() {
@@ -80,11 +81,17 @@ function App() {
     
   ];
   return (
-    <Routes>
-      <Route path="/" element={<Home imoveis={imoveis} />} />
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home imoveis={imoveis} />} />
+          <Route path="/imovel/:id" element={<PaginaDetalhes imoveis={imoveis} />} />
+        </Routes>
+      </div>
       
-      <Route path="/imovel/:id" element={<PaginaDetalhes imoveis={imoveis} />} />
-    </Routes>
+      {/* O Footer aqui fora garante que ele apareça em qualquer rota */}
+      <Footer />
+    </div>
   );
 }
 
